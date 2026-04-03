@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Error – CardioPredict</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">❤️</span>
+          <span class="logo-text">CardioPredict</span>
+        </div>
+      </div>
+    </header>
+    <main class="result-main">
+      <div class="result-card result-error">
+        <div class="result-icon">❌</div>
+        <h1 class="result-title">Something Went Wrong</h1>
+        <p class="error-message">{{ error_message }}</p>
+        <a href="/" class="btn-back">← Try Again</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

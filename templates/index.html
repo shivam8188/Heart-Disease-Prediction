@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart Disease Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">❤️</span>
+          <span class="logo-text">CardioPredict</span>
+        </div>
+        <p class="tagline">AI-powered heart disease risk assessment</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="card form-card">
+        <h2 class="card-title">Patient Information</h2>
+        <p class="card-subtitle">Please fill in all fields accurately for best results.</p>
+
+        <form method="POST" action="/predict" id="predictionForm">
+
+          <!-- Section: Demographics -->
+          <div class="form-section">
+            <h3 class="section-label">Demographics</h3>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="age">Age <span class="unit">(years)</span></label>
+                <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 52" required />
+              </div>
+              <div class="field-group">
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">Female</option>
+                  <option value="1">Male</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Symptoms -->
+          <div class="form-section">
+            <h3 class="section-label">Symptoms</h3>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="cp">Chest Pain Type
+                  <span class="tooltip" title="0=Typical Angina, 1=Atypical Angina, 2=Non-Anginal, 3=Asymptomatic">ⓘ</span>
+                </label>
+                <select id="cp" name="cp" required>
+                  <option value="" disabled selected>Select type</option>
+                  <option value="0">Typical Angina</option>
+                  <option value="1">Atypical Angina</option>
+                  <option value="2">Non-Anginal Pain</option>
+                  <option value="3">Asymptomatic</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="exang">Exercise-Induced Angina</label>
+                <select id="exang" name="exang" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Vitals -->
+          <div class="form-section">
+            <h3 class="section-label">Vitals & Lab Results</h3>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="trestbps">Resting Blood Pressure <span class="unit">(mm Hg)</span></label>
+                <input type="number" id="trestbps" name="trestbps" min="80" max="250" placeholder="e.g. 130" required />
+              </div>
+              <div class="field-group">
+                <label for="chol">Serum Cholesterol <span class="unit">(mg/dl)</span></label>
+                <input type="number" id="chol" name="chol" min="100" max="600" placeholder="e.g. 245" required />
+              </div>
+              <div class="field-group">
+                <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
+                <select id="fbs" name="fbs" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="thalach">Max Heart Rate Achieved</label>
+                <input type="number" id="thalach" name="thalach" min="50" max="250" placeholder="e.g. 150" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: ECG / Imaging -->
+          <div class="form-section">
+            <h3 class="section-label">ECG & Imaging</h3>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="restecg">Resting ECG Results</label>
+                <select id="restecg" name="restecg" required>
+                  <option value="" disabled selected>Select result</option>
+                  <option value="0">Normal</option>
+                  <option value="1">ST-T Wave Abnormality</option>
+                  <option value="2">Left Ventricular Hypertrophy</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="oldpeak">Oldpeak <span class="unit">(ST depression)</span></label>
+                <input type="number" id="oldpeak" name="oldpeak" step="0.1" min="0" max="10" placeholder="e.g. 1.0" required />
+              </div>
+              <div class="field-group">
+                <label for="slope">ST Segment Slope</label>
+                <select id="slope" name="slope" required>
+                  <option value="" disabled selected>Select slope</option>
+                  <option value="0">Upsloping</option>
+                  <option value="1">Flat</option>
+                  <option value="2">Downsloping</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="ca">Major Vessels (Fluoroscopy)</label>
+                <select id="ca" name="ca" required>
+                  <option value="" disabled selected>Select count</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="thal">Thalassemia</label>
+                <select id="thal" name="thal" required>
+                  <option value="" disabled selected>Select type</option>
+                  <option value="0">Normal</option>
+                  <option value="1">Fixed Defect</option>
+                  <option value="2">Reversible Defect</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-predict">
+            <span>Analyze Risk</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </form>
+      </div>
+
+      <aside class="info-panel">
+        <div class="info-card">
+          <h3>About This Tool</h3>
+          <p>This tool uses a machine learning model trained on the Cleveland Heart Disease dataset to estimate heart disease risk based on clinical indicators.</p>
+          <p class="disclaimer">⚠️ You are advised to Always consult a qualified medical professional for diagnosis.</p>
+        </div>
+        <div class="info-card features-card">
+          <h3>Input Features</h3>
+          <ul class="feature-list">
+            <li>13 clinical indicators</li>
+            <li>Demographic data</li>
+            <li>Vital signs</li>
+            <li>ECG results</li>
+            <li>Lab values</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
