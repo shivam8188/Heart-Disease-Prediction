@@ -1,0 +1,53 @@
+{
+  "best_model": "Logistic Regression",
+  "all_models": {
+    "Logistic Regression": {
+      "accuracy": 0.9167,
+      "precision": 1.0,
+      "recall": 0.8214,
+      "f1": 0.902
+    },
+    "Naive Bayes": {
+      "accuracy": 0.8667,
+      "precision": 1.0,
+      "recall": 0.7143,
+      "f1": 0.8333
+    },
+    "Random Forest": {
+      "accuracy": 0.8667,
+      "precision": 1.0,
+      "recall": 0.7143,
+      "f1": 0.8333
+    },
+    "XGBoost": {
+      "accuracy": 0.85,
+      "precision": 0.913,
+      "recall": 0.75,
+      "f1": 0.8235
+    },
+    "Gradient Boosting": {
+      "accuracy": 0.8667,
+      "precision": 0.9167,
+      "recall": 0.7857,
+      "f1": 0.8462
+    },
+    "K-Nearest Neighbors": {
+      "accuracy": 0.8833,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571
+    },
+    "Decision Tree": {
+      "accuracy": 0.8333,
+      "precision": 0.7812,
+      "recall": 0.8929,
+      "f1": 0.8333
+    },
+    "Support Vector Machine": {
+      "accuracy": 0.8833,
+      "precision": 0.9565,
+      "recall": 0.7857,
+      "f1": 0.8627
+    }
+  }
+}
